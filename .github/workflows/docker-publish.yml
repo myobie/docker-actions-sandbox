@@ -13,7 +13,7 @@ jobs:
         run: docker login docker.pkg.github.com -u josh -p "${{ secrets.GITHUB_TOKEN }}"
 
       - name: Build Docker image
-        run: docker build . --file Dockerfile --tag docker.pkg.github.com/josh/docker-actions-sandbox/hello-world:$(date +%s)
+        run: docker build . --file Dockerfile --tag docker.pkg.github.com/josh/docker-actions-sandbox/hello-world:${{ github.sha }}
 
       - name: Push Docker image
-        run: docker push docker.pkg.github.com/josh/docker-actions-sandbox/hello-world:$(date +%s)
+        run: docker push docker.pkg.github.com/josh/docker-actions-sandbox/hello-world:${{ github.sha }}
