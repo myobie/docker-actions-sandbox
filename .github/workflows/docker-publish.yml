@@ -12,5 +12,8 @@ jobs:
       - name: Docker Login
         run: docker login docker.pkg.github.com -u josh -p "${{ secrets.GITHUB_TOKEN }}"
 
-      - name: Build the Docker image
+      - name: Build Docker image
         run: docker build . --file Dockerfile --tag docker.pkg.github.com/josh/docker-actions-sandbox/hello-world:$(date +%s)
+
+      - name: Push Docker image
+        run: docker push docker.pkg.github.com/josh/docker-actions-sandbox/hello-world:$(date +%s)
