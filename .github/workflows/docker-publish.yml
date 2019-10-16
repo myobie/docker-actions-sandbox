@@ -12,6 +12,9 @@ jobs:
       - name: Docker Login
         run: docker login docker.pkg.github.com -u josh -p "${{ secrets.GITHUB_TOKEN }}"
 
+      - name: Print docker config
+        run: cat $HOME/.docker/config.json
+
       - name: Build Docker image
         run: docker build . --file Dockerfile --tag docker.pkg.github.com/josh/docker-actions-sandbox/hello-world:${{ github.sha }}
 
