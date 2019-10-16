@@ -1,4 +1,4 @@
-name: Docker Image Publish
+name: Publish Docker Image
 
 on: [push]
 
@@ -8,5 +8,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+
+      - name: Docker Login
+        run: docker login docker.pkg.github.com -u ${OWNER} -p ${{secrets.GPR_AUTH_TOKEN}}
+
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag docker.pkg.github.com/josh/docker-actions-sandbox/hello-world:$(date +%s)
+        run: docker build . --file Dockerfile --tag docker.pkg.github.com/${OWNER}/docker-actions-sandbox/hello-world:$(date +%s)
