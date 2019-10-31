@@ -16,7 +16,7 @@ jobs:
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
 
       - name: Build Docker image
-        run: docker build . --file Dockerfile --tag docker.pkg.github.com/${{ github.repository }}/hello-world:latest
+        run: docker build . --file Dockerfile --tag docker.pkg.github.com/${{ github.repository }}/hello-world:release-${{ github.ref }}
 
       - name: Push Docker image
-        run: docker push docker.pkg.github.com/${{ github.repository }}/hello-world:latest
+        run: docker push docker.pkg.github.com/${{ github.repository }}/hello-world:release-${{ github.ref }}
