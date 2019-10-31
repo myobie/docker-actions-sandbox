@@ -5,7 +5,7 @@ Objective: Implement Docker Hub Builds via GitHub Actions CI and Package Registr
 [Docker Hub Builds](https://cloud.docker.com/repository/docker/joshpeek/docker-actions-sandbox/builds) / [GitHub Actions CI](https://github.com/josh/docker-actions-sandbox/actions)
 
 - [x] [Autotest](https://docs.docker.com/docker-hub/builds/automated-testing/): Run `docker-compose.test.yml` `build` and `sut`.
-- [ ] Build `master` branch: Publish git `master` to `latest` Docker tag.
+- [x] Build `master` branch: Publish git `master` to `latest` Docker tag.
 - [ ] Build release tags: Publish git `v1.2.3` to `version-1.2.3` Docker tag.
 
 ```sh
