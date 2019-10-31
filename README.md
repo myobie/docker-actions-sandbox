@@ -15,3 +15,11 @@ Digest: sha256:92c7f9c92844bbbb5d0a101b22f7c2a7949e40f8ea90c8b3bc396879d95e899a
 Status: Image is up to date for joshpeek/docker-actions-sandbox
 docker.io/joshpeek/docker-actions-sandbox
 ```
+
+```sh
+$ docker image pull docker.pkg.github.com/josh/docker-actions-sandbox/hello-world:latest
+latest: Pulling from josh/docker-actions-sandbox/hello-world
+Digest: sha256:92c7f9c92844bbbb5d0a101b22f7c2a7949e40f8ea90c8b3bc396879d95e899a
+Status: Image is up to date for docker.pkg.github.com/josh/docker-actions-sandbox/hello-world:latest
+docker.pkg.github.com/josh/docker-actions-sandbox/hello-world:latest
+```
