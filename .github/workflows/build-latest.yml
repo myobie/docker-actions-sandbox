@@ -2,8 +2,8 @@ name: Build latest image
 
 on:
   push:
-    tags:
-      - v*
+    branches:
+      - master
 
 jobs:
   build:
