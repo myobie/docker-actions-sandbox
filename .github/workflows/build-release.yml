@@ -1,0 +1,22 @@
+name: Build release image
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Docker Login
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+
+      - name: Build Docker image
+        run: docker build . --file Dockerfile --tag docker.pkg.github.com/${{ github.repository }}/hello-world:latest
+
+      - name: Push Docker image
+        run: docker push docker.pkg.github.com/${{ github.repository }}/hello-world:latest
