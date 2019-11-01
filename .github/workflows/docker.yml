@@ -26,6 +26,8 @@ jobs:
         run: docker-compose -f docker-compose.test.yml run sut
 
   push:
+    needs: test
+
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
 
