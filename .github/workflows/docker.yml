@@ -6,7 +6,8 @@ on:
       - master
     tags:
       - v*
-  pull_request: true
+  pull_request:
+    - *
 
 env:
   IMAGE_NAME: hello-world
@@ -26,7 +27,7 @@ jobs:
 
   push:
     runs-on: ubuntu-latest
-    if: github.event_name != "pull_request"
+    if: github.event_name == "push"
 
     steps:
       - uses: actions/checkout@v1
