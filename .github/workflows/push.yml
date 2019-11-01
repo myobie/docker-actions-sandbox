@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - master
+    tags:
+      - v*
 
 env:
   IMAGE_NAME: hello-world
@@ -24,6 +26,16 @@ jobs:
       - name: Push Docker image
         run: |
           IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME
-          VERSION=latest
+          REF=${{ github.ref }}
+          SHORT_REF=$(echo $REF | sed -e 's,.*/\(.*\),\1,')
+
+          if [ "$REF" == "refs/tags/" ];
+            VERSION=$(echo $SHORT_REF | sed -e 's/^v//')
+          elif [ "$REF" == "master" ];
+            VERSION=latest
+          else
+            VERSION=$SHORT_REF
+          fi
+
           docker tag build-image $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
