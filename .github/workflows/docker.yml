@@ -1,4 +1,4 @@
-name: Push Docker image
+name: Docker
 
 on:
   push:
@@ -6,13 +6,27 @@ on:
       - master
     tags:
       - v*
+  pull_request: true
 
 env:
   IMAGE_NAME: hello-world
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: build
+        run: docker-compose -f docker-compose.test.yml build
+
+      - name: test
+        run: docker-compose -f docker-compose.test.yml run sut
+
   push:
     runs-on: ubuntu-latest
+    if: github.event_name != "pull_request"
 
     steps:
       - uses: actions/checkout@v1
