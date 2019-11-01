@@ -7,7 +7,6 @@ on:
 
 env:
   IMAGE_NAME: hello-world
-  IMAGE_ID: docker.pkg.github.com/${{ github.repository }}/${{ env.IMAGE_NAME }}
 
 jobs:
   build:
@@ -24,5 +23,6 @@ jobs:
 
       - name: Push Docker image
         run: |
-          docker tag build-image docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME:latest
+          IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME
+          docker tag build-image $IMAGE_ID:latest
           docker push $IMAGE_ID:latest
